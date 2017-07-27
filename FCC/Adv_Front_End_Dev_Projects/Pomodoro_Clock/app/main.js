@@ -1,24 +1,44 @@
 $(document).ready(function() {
   $(".pause").hide();
-  var sound = $("#sound")[0];
+  //var sound = $("#sound")[0];
 
   // now Session or Break timer?
   var isNowSession = true;
 
   // css depended what is timer now
   function cssSessOrBreak() {
+    $("#minS, #plusS, #defS").prop("disabled", false);
+    $("#minBr, #plusBr, #defBr").prop("disabled", false);
     if(isNowSession) {
+      if ($(".pause").is(":visible")) {
+        $("#minS, #plusS, #defS").prop("disabled", true);
+      }
+      else {
+        $("#minS, #plusS, #defS").prop("disabled", false);
+      }
       $("#lbS").css("background-color", "#f77");
       $("#lbS").css("color", "black");
       $("#lbBr").css("background-color", "#822");
       $("#lbBr").css("color", "#ffe6e6");
     }
     else {
+      if ($(".pause").is(":visible")) {
+        $("#minBr, #plusBr, #defBr").prop("disabled", true);
+      }
+      else {
+        $("#minBr, #plusBr, #defBr").prop("disabled", false);
+       }
       $("#lbBr").css("background-color", "#f77");
       $("#lbBr").css("color", "black");
       $("#lbS").css("background-color", "#822");
       $("#lbS").css("color", "#ffe6e6");
     }
+  }
+
+  // add '0' before digit < 10
+  function addZero(x) {
+    if(x < 10 && x[0] !== '0') return '0' + x;
+    else return x
   }
 
   // click buttons for session
@@ -67,17 +87,51 @@ $(document).ready(function() {
   
   // change time on screen by press buttons
   function setScreenTime(minut) {
-    if(minut < 10) minut = '0' + minut; 
-    $('#lcd').val(minut + ':00')
+    $('#lcd').val(addZero(minut) + ':00')
   }
 
-  // 
-  $('.start').click(function () {
+  // decrement time in screen
+  function ticTime() {
+    var minutes = $('#lcd').val().split(':')[0];
+    var secundes = $('#lcd').val().split(':')[1];
+    if(secundes == '00') {
+      minutes -= 1;
+      secundes = 60;
+    } 
+    secundes -= 1;
+    $('#lcd').val(addZero(minutes) + ':' + addZero(secundes))
+  }
+var goTimer;
+  function startTimer() {
     cssSessOrBreak();
+    goTimer = setInterval(function() {
+      if ($("#lcd").val() === "00:00") {
+        clearInterval(goTimer);
+        $('#sound').get(0).play();
+        isNowSession = !isNowSession;
+        if(isNowSession) setScreenTime(sesTimer);
+        else setScreenTime(breakTimer);
+        startTimer();
+      } else {
+        ticTime();
+      }
+    }, 1000)
+  }
+
+  // click start button
+  $('.start').click(function () {
     $(".start").hide();
     $(".pause").show();
+    startTimer();
   })
 
+  // click pause button
+  $('.pause').click(function () {
+    $(".start").show();
+    $(".pause").hide();
+    cssSessOrBreak();
+    clearInterval(goTimer);
+  })
 
 
 });
