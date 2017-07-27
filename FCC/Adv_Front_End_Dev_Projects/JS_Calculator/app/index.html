@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS Calculator</title>
+	<link href="https://fonts.googleapis.com/css?family=Lobster|Roboto|Muli" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+	<h1>JavaScript Calculator</h1>
+<div id="calc">
+  
+  <form>
+    <div id="top">
+      <input id="screen" type="text" disabled>
+      <div id="label">VANATU</div>
+    </div>
+    </br>
+    <input type='button' value='7' onclick='digit("7")'>
+    <input type='button' value='8' onclick='digit("8")'>
+    <input type='button' value='9' onclick='digit("9")'>
+    <input type='button' class='action' value='&larr;' onclick='back()'>
+    <input type='button' class='ce' value='CE' onclick='clearScreen()'>
+    </br>
+    <input type='button' value='4' onclick='digit("4")'>
+    <input type='button' value='5' onclick='digit("5")'>
+    <input type='button' value='6' onclick='digit("6")'>
+    <input type='button' class='action' value='x' onclick='act("*")'>
+    <input type='button' class='action' value='&divide;' onclick='act("/")'>
+    </br>
+    <input type='button' value='1' onclick='digit("1")'>
+    <input type='button' value='2' onclick='digit("2")'>
+    <input type='button' value='3' onclick='digit("3")'>
+    <input type='button' class='action' value='+' onclick='act("+")'>
+    <input type='button' class='action' value='-' onclick='minus()'>
+    </br>
+    <input type='button' value='0' onclick='zero()'>
+    <input type='button' value='00' onclick='twoZero()'>
+    <input type='button' value='.' onclick='pressDot()'>
+    <input type='button' class='action' id='eq' value='=' onclick='result()'>
+    </br>
+  </form>
+</div>
+<script src="main.js"></script>
+</body>
+</html>
