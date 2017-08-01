@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tic Tac Toe Game</title>
+  <link href="https://fonts.googleapis.com/css?family=Lobster|Indie+Flower|Questrial" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+  <div class="text-center" id="tic-tac-toe">
+  <h1>Tic-Tac-Toe Game</h1>
+  <div id="menu">
+    <h2>START GAME</h2>
+    <input class="gameMode" type="button" value="Computer" />
+    <input class="gameMode" type="button" value="Two Players" />
+    <input class="xo" type="button" value="X" />
+    <input class="xo" type="button" value="O" />
+  </div>
+  <div id="board">
+    <div id="tablo">
+      <div id="player1"></div>
+      <div id="result"></div>
+      <div id="player2"></div>
+    </div><br>
+    <input id="a1" class="cell top left-right" type="button" value="1" /><input id="a2" class="cell top center" type="button" value="2" /><input id="a3" class="cell top left-right" type="button" value="3" /><br>
+    <input id="b1" class="cell middle left-right" type="button" value="4" /><input id="b2" class="cell middle center" type="button" value="5" /><input id="b3" class="cell middle left-right" type="button" value="6" /><br>
+    <input id="c1" class="cell bottom left-right" type="button" value="7" /><input id="c2" class="cell bottom center" type="button" value="8" /><input id="c3" class="cell bottom left-right" type="button" value="9" />
+  </div>
+  <input id="newGame" class="gameBtn" type="button" value="New Game"/>
+  <input id="cont" class="gameBtn" type="button" value="Continue"/>
+</div>
+  <script
+  src="http://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <script src="main.js"></script>  
+</body>
+</html>

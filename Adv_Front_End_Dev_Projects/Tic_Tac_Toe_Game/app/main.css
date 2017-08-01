@@ -1,0 +1,111 @@
+body {
+  background-color: #888;
+}
+h1 {
+  font-family: 'Lobster', cursive;
+  color: orange;
+  font-size: 50px;
+  text-shadow: 2px 2px 2px #000;
+}
+#menu {
+  font-family: 'Questrial', sans-serif;
+  background-color: #222;
+  width: 280px;
+  height: 180px;
+  margin: 70px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 6px #000;
+}
+#menu h2 {
+  color: #4c4;
+  text-shadow: 0px 0px 10px green;
+  margin-bottom: 20px;
+}
+#menu input {
+  background-color: #222;
+  width: 100px;
+  height: 40px;
+  color: #4c4;
+  border: 0px;
+  margin: 9px;
+  box-shadow: 0 0 3px 1px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+#menu .xo {
+  width: 40px;
+}
+#menu input:hover {
+  background-color: #444;
+}
+#board {
+  border: 5px solid #222;
+  border-radius: 20px 20px 0 0;
+  padding: 20px;
+  margin: 70px auto 30px;
+  background-color: #ddd;
+  width: 360px;
+  box-shadow: 0px 0px 20px 5px #222;
+}
+#tablo {
+  background-color: #222;
+  margin: -20px -20px 0px -20px;
+  border-radius: 10px 10px 0 0;
+  height: 42px;
+  color: #4c4;
+  font-size: 20px;
+  font-family: 'Questrial', sans-serif;
+  text-shadow: 0px 0px 10px green;
+  line-height: 40px;
+}
+#tablo div {
+  margin: -2px;
+  display: inline;
+}
+#tablo div#result {
+  padding: 0px 20px;
+}
+.top {
+  border-bottom: 5px solid #558;
+  border-top: 0px;
+}
+.bottom {
+  border-top: 5px solid #558;
+  border-bottom: 0px;
+}
+.middle {
+  border-top: 0px;
+  border-bottom: 0px;
+}
+.left-right {
+  border-left: 0px;
+  border-right: 0px;
+}
+.center {
+  border-left: 5px solid #558;
+  border-right: 5px solid #558;
+  width: 110px !important;
+}
+.cell {
+  width: 100px;
+  height: 100px;
+  background-color: #ddd;
+  font-family: 'Indie Flower', arial;
+  font-size: 110px;
+  font-weight: bold;
+  color: #ddd;
+  line-height: 50px;
+  outline: none;
+}
+.gameBtn {
+  background-color: #222;
+  width: 100px;
+  height: 40px;
+  color: #4c4;
+  border: 0px;
+  box-shadow: 0 0 3px 1px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: 'Questrial', sans-serif;
+}
