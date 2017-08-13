@@ -4,6 +4,7 @@ $(document).ready(function() {
     alienSign,
     colorSign,
     curSign,
+    myTurn = true,
     myScore = 0,
     alienScore = 0,
     cnt = 0;
@@ -18,7 +19,7 @@ $(document).ready(function() {
     $("#board").hide();
     $("#newGame").hide();
     $(".xo").hide();
-    (myScore = 0), (alienScore = 0);
+    (myScore = 0), (alienScore = 0), (myTurn = true);
     $(".gameMode").click(function() {
       $(".gameMode").hide();
       $(".xo").show();
@@ -35,12 +36,23 @@ $(document).ready(function() {
       }
       $("#menu").hide();
       tablo();
-      startGame(mySign);
+      startGame();
     });
   }
 
-  function startGame(sign) {
-    curSign = sign;
+  function whoTurn(x) {
+    if(alienName == 'Computer') curSign = mySign;
+    else {
+      var y;
+      x === mySign ? y = 1 : y = 2;
+      curSign = x;
+      $("#player" + y).css("color", "white");
+      $("#player" + (3-y)).css("color", "#4c4");
+   }
+  }
+
+  function startGame() {
+    myTurn ? whoTurn(mySign) : whoTurn(alienSign);
     cnt = 0;
     $("#board").show();
     $("#newGame").show();
@@ -57,52 +69,81 @@ $(document).ready(function() {
     $("#c2").val(8);
     $("#c3").val(9);
     $(".cell").css("background-color", "#ddd");
+    if(alienName == "Computer" && !myTurn) compTurn();
   }
 
   $(".cell").click(function() {
     cnt += 1;
-    $(this).css("color", "#000");
     $(this).prop("disabled", true);
     colorSign = "#0033cc";
     if (curSign == "X") colorSign = "#cc0000";
     $(this).val(curSign);
     $(this).css("color", colorSign);
-    if (alienName == "Computer") {
-      compTurn();
-    } else {
-      if (curSign == mySign) {
-        curSign = alienSign;
-        $("#player2").css("color", "white");
-        $("#player1").css("color", "#4c4");
-      } else {
-        curSign = mySign;
-        $("#player2").css("color", "#4c4");
-        $("#player1").css("color", "white");
-      }
-    }
     if (win()) winCSS(win());
     else if (cnt == 9) {
       myScore += 1;
       alienScore += 1;
       endGame();
+    } else { 
+      if(alienName == "Computer") compTurn();
+      else curSign == mySign ? whoTurn(alienSign) : whoTurn(mySign);
     }
   });
 
   function compTurn() {
+    var arr = [];
+    function winNow(arr) {
+      function letter(arr){
+        var abc = ['a', 'b', 'c'];
+        for(var i=0; i<arr.length; i++) {
+          abc = abc.filter(function(x) { return x != arr[i] })
+        }
+        return abc[0];
+      }
+      var a = arr.filter(function(x){ return x.indexOf('a') >= 0 }).map(function(x){return x[1]});
+      var b = arr.filter(function(x){ return x.indexOf('b') >= 0 }).map(function(x){return x[1]});
+      var c = arr.filter(function(x){ return x.indexOf('c') >= 0 }).map(function(x){return x[1]});
+      var one = arr.filter(function(x){ return x.indexOf('1') >= 0 }).map(function(x){return x[0]});
+      var two = arr.filter(function(x){ return x.indexOf('2') >= 0 }).map(function(x){return x[0]});
+      var thr = arr.filter(function(x){ return x.indexOf('3') >= 0 }).map(function(x){return x[0]});
+      if(a.length == 2) arr.push('a'+(6 - a.reduce((prev, curr) => prev*1 + curr*1 )));
+      if(b.length == 2) arr.push('b'+(6 - b.reduce((prev, curr) => prev*1 + curr*1 )));
+      if(c.length == 2) arr.push('c'+(6 - c.reduce((prev, curr) => prev*1 + curr*1 )));
+      if(one.length == 2) arr.push(letter(one) + '1');
+      if(two.length == 2) arr.push(letter(two) + '2');
+      if(thr.length == 2) arr.push(letter(thr) + '3');
+      for(var i=0; i < arr.length; i++) {
+        if($('#'+arr[i]).prop("disabled") == false) return arr[i];
+      }
+    }  
+
     colorSign = "#0033cc";
     var item,
+    allCell = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'],
     itemsCorner = ['a1', 'a3', 'c1', 'c3'].filter(function(x){return $('#'+x).prop('disabled') == false}),
-    itemsOther = ['a2','b1','b3','c2'].filter(function(x){return $('#'+x).prop('disabled') == false});
+    itemsOther = ['a2','b1','b3','c2'].filter(function(x){return $('#'+x).prop('disabled') == false}),
+    playerSigns = allCell.filter(function (x) { return $('#'+x).val() == mySign }),
+    compSigns = allCell.filter(function (x) { return $('#'+x).val() == alienSign });
+
     if (alienSign == "X") colorSign = "#cc0000";
-    if ($("#b2").prop("disabled") == false) {
-      item = 'b2';
-    }
+    console.log(winNow(compSigns));
+    console.log(winNow(playerSigns));
+    if(winNow(compSigns)) item = winNow(compSigns);
+    else if(winNow(playerSigns)) item = winNow(playerSigns);
+    else if ($("#b2").prop("disabled") == false) item = 'b2';
     else if(itemsCorner.length > 0) item = itemsCorner[Math.floor(Math.random()*itemsCorner.length)]; 
     else item = itemsOther[Math.floor(Math.random()*itemsOther.length)]; 
     $('#'+item).val(alienSign);
     $('#'+item).css("color", colorSign);
     $('#'+item).prop('disabled','true');
+    cnt += 1;
+    if (win()) winCSS(win());
+    else if (cnt == 5) {
+      myScore += 1;
+      alienScore += 1;
+      endGame();
     }
+  }
 
   function tablo() {
     function difWidth(x, y) {
@@ -156,6 +197,7 @@ $(document).ready(function() {
   }
 
   function endGame() {
+    myTurn = !myTurn;
     $("#result").html(myScore + " : " + alienScore);
     if (myScore < 3 && alienScore < 3) {
       $("#newGame").hide();
@@ -170,7 +212,6 @@ $(document).ready(function() {
   $("#cont").click(function() {
     $("#newGame").show();
     $("#cont").hide();
-    if (curSign == mySign) startGame(mySign);
-    else startGame(alienSign);
+    startGame();
   });
 });
