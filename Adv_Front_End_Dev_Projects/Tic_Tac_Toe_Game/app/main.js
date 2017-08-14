@@ -93,25 +93,30 @@ $(document).ready(function() {
   function compTurn() {
     var arr = [];
     function winNow(arr) {
-      function letter(arr){
-        var abc = ['a', 'b', 'c'];
+
+      function letter(eth, arr){
         for(var i=0; i<arr.length; i++) {
-          abc = abc.filter(function(x) { return x != arr[i] })
+          eth = eth.filter(function(x) { return x != arr[i] })
         }
-        return abc[0];
+        return eth[0];
       }
+
       var a = arr.filter(function(x){ return x.indexOf('a') >= 0 }).map(function(x){return x[1]});
       var b = arr.filter(function(x){ return x.indexOf('b') >= 0 }).map(function(x){return x[1]});
       var c = arr.filter(function(x){ return x.indexOf('c') >= 0 }).map(function(x){return x[1]});
       var one = arr.filter(function(x){ return x.indexOf('1') >= 0 }).map(function(x){return x[0]});
       var two = arr.filter(function(x){ return x.indexOf('2') >= 0 }).map(function(x){return x[0]});
       var thr = arr.filter(function(x){ return x.indexOf('3') >= 0 }).map(function(x){return x[0]});
+      var diag1 = arr.filter(function(x){ if(x == 'a1' || x == 'b2' || x == 'c3') return x });
+      var diag2 = arr.filter(function(x){ if(x == 'c1' || x == 'b2' || x == 'a3') return x });
+      if(diag1.length == 2) arr.push(letter(['a1', 'b2', 'c3'], diag1));
+      if(diag2.length == 2) arr.push(letter(['a3', 'b2', 'c1'], diag2));
       if(a.length == 2) arr.push('a'+(6 - a.reduce((prev, curr) => prev*1 + curr*1 )));
       if(b.length == 2) arr.push('b'+(6 - b.reduce((prev, curr) => prev*1 + curr*1 )));
       if(c.length == 2) arr.push('c'+(6 - c.reduce((prev, curr) => prev*1 + curr*1 )));
-      if(one.length == 2) arr.push(letter(one) + '1');
-      if(two.length == 2) arr.push(letter(two) + '2');
-      if(thr.length == 2) arr.push(letter(thr) + '3');
+      if(one.length == 2) arr.push(letter(['a', 'b', 'c'], one) + '1');
+      if(two.length == 2) arr.push(letter(['a', 'b', 'c'], two) + '2');
+      if(thr.length == 2) arr.push(letter(['a', 'b', 'c'], thr) + '3');
       for(var i=0; i < arr.length; i++) {
         if($('#'+arr[i]).prop("disabled") == false) return arr[i];
       }
@@ -126,8 +131,6 @@ $(document).ready(function() {
     compSigns = allCell.filter(function (x) { return $('#'+x).val() == alienSign });
 
     if (alienSign == "X") colorSign = "#cc0000";
-    console.log(winNow(compSigns));
-    console.log(winNow(playerSigns));
     if(winNow(compSigns)) item = winNow(compSigns);
     else if(winNow(playerSigns)) item = winNow(playerSigns);
     else if ($("#b2").prop("disabled") == false) item = 'b2';
@@ -138,7 +141,7 @@ $(document).ready(function() {
     $('#'+item).prop('disabled','true');
     cnt += 1;
     if (win()) winCSS(win());
-    else if (cnt == 5) {
+    else if (cnt == 9) {
       myScore += 1;
       alienScore += 1;
       endGame();
@@ -199,6 +202,7 @@ $(document).ready(function() {
   function endGame() {
     myTurn = !myTurn;
     $("#result").html(myScore + " : " + alienScore);
+    console.log('end game. ' + myScore + ' : ' + alienScore);
     if (myScore < 3 && alienScore < 3) {
       $("#newGame").hide();
       $("#cont").show();
