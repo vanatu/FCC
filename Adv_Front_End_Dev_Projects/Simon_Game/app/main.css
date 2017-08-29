@@ -21,7 +21,7 @@ body {
   border-radius:50%;
   border:24px solid #222;
 }
-input {
+#count {
   font-size: 24px;
   font-family: 'Orbitron', sans-serif;
   border-radius: 20px 20px 0 0;
@@ -51,6 +51,10 @@ input {
   width: 200px;
   margin: 5px auto;
   border-radius: 0 0 200px 200px;
+  font-size: 18px;
+  text-align: center;
+  font-family: 'Saira Semi Condensed', sans-serif;
+  font-weight: bold;
 }
 .button {
   float: left;
@@ -58,23 +62,78 @@ input {
   width:250px;
   height:250px;
 }
+.btn {
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  box-shadow: 2px 2px 3px 1px #444;
+  margin-top: -5px;
+}
+*{
+outline: none !important
+}
+.onoff {
+  width: 60px;
+  padding: 0px 3px 0px 5px;
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 5px;
+}
+#off {
+  color: #20c3d2;
+  text-align: right;
+  box-shadow: 20px 0px 8px 1px #20c3d2 inset;
+}
+#on {
+  color: #333;
+  text-align: left;
+  box-shadow: 30px 0px 8px 1px #20c3d2 inset;
+}
 #green {
   border-top-left-radius:100%;
+}
+.green_off {
+  background-color: #006622
+}
+.green_on {
+  background-color: #009933;
+}
+.green_beep {
   background-color: #30ff32;
-  box-shadow: 10px 3px 30px 12px #01bd00 inset;
 }
 #red {
   border-top-right-radius:100%;
-  background-color: #c5090a;
-  box-shadow: -5px 20px 30px 10px #c38484 inset;
+}
+.red_off {
+  background-color: #800000;
+}
+.red_on {
+  background-color: #b30000;
+}
+.red_beep {
+  background-color: red;
 }
 #yellow {
   border-bottom-left-radius:100%;
-  background-color: #eae109;
-  box-shadow: 5px 3px 20px 22px #b7b054 inset;
+ }
+ .yellow_off{
+  background-color: #b38f00;
+ }
+.yellow_on {
+  background-color: #e6b800;
+}
+.yellow_beep {
+  background-color: #ffff00;
 }
 #blue {
   border-bottom-right-radius:100%;
-  background-color: #3fa9c7;
-  box-shadow: -10px 3px 20px 12px #9bc0ca inset;
+}
+.blue_off{
+  background-color: #004d99;
+}
+.blue_on {
+  background-color: #3366ff;
+}
+.blue_beep {
+  background-color: #33ccff;
 }
