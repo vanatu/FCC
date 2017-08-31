@@ -1,0 +1,139 @@
+body {
+  background-color: #998;
+}
+.container{
+  width:500px;
+  height:500px;
+  background-color: #fff;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  border-radius:50%;
+  box-shadow: 1px 3px 30px 12px #555;
+}
+.panel{
+  width:260px;
+  height:260px;
+  background-color:#c3c2c4;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  border-radius:50%;
+  border:24px solid #222;
+}
+#count {
+  font-size: 24px;
+  font-family: 'Orbitron', sans-serif;
+  border-radius: 20px 20px 0 0;
+  width: 66px;
+  text-align: center;
+  background-color: #2a000c;
+  border: 1px solid #333;
+  color: #de4344;
+  box-shadow: 0px 0px 1px 1px #c3c2c4;
+}
+#topCntr {
+  background-color: #333;
+  color: #c3c2c4;
+  border-radius: 200px 200px 0 0;
+  height: 100px;
+  width: 200px;
+  margin: 3px auto;
+  text-align: center;
+  font-size: 36px;
+  font-family: 'Slackey', cursive;
+  box-shadow: 5px 5px 15px 15px #222 inset;
+  border: 2px solid #111;
+}
+#control {
+  border: 3px solid #222;
+  height: 100px;
+  width: 200px;
+  margin: 5px auto;
+  border-radius: 0 0 200px 200px;
+  font-size: 18px;
+  text-align: center;
+  font-family: 'Saira Semi Condensed', sans-serif;
+  font-weight: bold;
+}
+.button {
+  float: left;
+  border:16px solid #222;
+  width:250px;
+  height:250px;
+}
+.btn {
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  box-shadow: 2px 2px 3px 1px #444;
+  margin-top: -5px;
+}
+*{
+outline: none !important
+}
+.onoff {
+  width: 60px;
+  padding: 0px 3px 0px 5px;
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 5px;
+}
+#off {
+  color: #20c3d2;
+  text-align: right;
+  box-shadow: 20px 0px 8px 1px #20c3d2 inset;
+}
+#on {
+  color: #333;
+  text-align: left;
+  box-shadow: 30px 0px 8px 1px #20c3d2 inset;
+}
+#green {
+  border-top-left-radius:100%;
+}
+.green_off {
+  background-color: #006622
+}
+.green_on {
+  background-color: #009933;
+}
+.green_beep {
+  background-color: #30ff32;
+}
+#red {
+  border-top-right-radius:100%;
+}
+.red_off {
+  background-color: #800000;
+}
+.red_on {
+  background-color: #b30000;
+}
+.red_beep {
+  background-color: red;
+}
+#yellow {
+  border-bottom-left-radius:100%;
+ }
+ .yellow_off{
+  background-color: #b38f00;
+ }
+.yellow_on {
+  background-color: #e6b800;
+}
+.yellow_beep {
+  background-color: #ffff00;
+}
+#blue {
+  border-bottom-right-radius:100%;
+}
+.blue_off{
+  background-color: #004d99;
+}
+.blue_on {
+  background-color: #3366ff;
+}
+.blue_beep {
+  background-color: #33ccff;
+}
